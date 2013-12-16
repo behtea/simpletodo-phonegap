@@ -29,8 +29,8 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     onDeviceReady: function() {       
-        $("#add-todo").on("click", app.saveTodo);
-        $("#data-todo").on("keypress", app.submitTodo);
+        $("#add-todo").on("click", app.saveTodo);     
+        $("#data-todo").on("keypress", app.submitTodo);     
         window.db = window.openDatabase("Database", "1.0", "simpletodo", 200000);
         window.db.transaction(todos.createTable, todos.errorCB, todos.createTableSuccess);
     },
@@ -43,8 +43,6 @@ var app = {
         todos.setTodo($("#data-todo").val());
         window.db.transaction(todos.insertData, todos.errorCB, todos.insertDataSuccess);
         $("#data-todo").val("");  
-
-        $("#undone").prepend("<li>" + $("#data-todo").val() +"</li>");
     },
     addTodo: function(id, todo){
         $("#undone").prepend("<li><span>" + todo +"</span>  <a href=\"#\" id=\"todo-" + id + "\" data-id=\"" + id + "\" class=\"removetodo\">[X]</a></li>");                      
